@@ -4,523 +4,2065 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Pixel IT Group</title>
+    <title>Pixel IT Group — Veb-sayt, CRM va AI yechimlar</title>
+    <meta name="description" content="Pixel IT Group bizneslar uchun professional veb-saytlar, CRM tizimlari, Pixel POS, LMS va sun’iy intellekt avtomatlashtirish yechimlarini yaratadi.">
+    <meta name="theme-color" content="#0b1f3a">
+    <meta name="robots" content="index, follow">
+
+    <link rel="canonical" href="https://polvonzoda-qurbonov.github.io/pixel-landing/">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 64 64%22><rect width=%2264%22 height=%2264%22 rx=%2216%22 fill=%22%231d6fff%22/><path d=%22M18 16h17c9 0 15 5 15 13s-6 13-15 13h-7v8H18V16zm10 9v9h7c3 0 5-2 5-5s-2-4-5-4h-7z%22 fill=%22white%22/></svg>">
+
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="uz_UZ">
+    <meta property="og:title" content="Pixel IT Group — Biznesingiz uchun raqamli yechimlar">
+    <meta property="og:description" content="Professional veb-sayt, CRM va AI avtomatlashtirish xizmatlari.">
+    <meta property="og:url" content="https://polvonzoda-qurbonov.github.io/pixel-landing/">
+
+    <script>
+        document.documentElement.classList.add("js");
+    </script>
 
     <style>
+        :root {
+            --navy: #0b1f3a;
+            --navy-soft: #132c50;
+            --blue: #1d6fff;
+            --blue-dark: #0d54d7;
+            --cyan: #20b7ed;
+            --text: #10203a;
+            --muted: #64748b;
+            --line: #dbe6f5;
+            --surface: #ffffff;
+            --surface-soft: #f4f8ff;
+            --success: #0f9f6e;
+            --shadow: 0 22px 60px rgba(16, 32, 58, 0.12);
+            --radius: 24px;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
         }
 
-        body {
-            font-family: Arial, sans-serif;
-            background: #f4f8ff;
-            color: #10203a;
+        html {
+            scroll-behavior: smooth;
         }
 
-        header {
+        body {
+            min-width: 320px;
+            background: var(--surface);
+            color: var(--text);
+            font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        body.menu-open {
+            overflow: hidden;
+        }
+
+        a,
+        button,
+        input,
+        select,
+        textarea {
+            font: inherit;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button,
+        select {
+            cursor: pointer;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+        section {
+            scroll-margin-top: 92px;
+        }
+
+        .container {
+            width: min(1160px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        .skip-link {
+            position: fixed;
+            top: 12px;
+            left: 12px;
+            z-index: 3000;
+            padding: 10px 14px;
+            background: var(--navy);
+            color: white;
+            border-radius: 8px;
+            transform: translateY(-150%);
+        }
+
+        .skip-link:focus {
+            transform: translateY(0);
+        }
+
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 2000;
+            background: rgba(255, 255, 255, 0.92);
+            border-bottom: 1px solid rgba(219, 230, 245, 0.8);
+            backdrop-filter: blur(16px);
+        }
+
+        .header-inner {
+            min-height: 78px;
             display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 25px 8%;
-            background: white;
-            position: relative;
-            z-index: 1000;
+            justify-content: space-between;
+            gap: 28px;
         }
 
         .logo {
-            color: #1769ff;
-            font-size: 24px;
-            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 11px;
+            color: var(--navy);
+            text-decoration: none;
+            font-size: 20px;
+            font-weight: 850;
+            letter-spacing: -0.5px;
+            white-space: nowrap;
         }
 
-        .menu-toggle {
-            display: none;
-            flex-direction: column;
-            justify-content: center;
-            gap: 5px;
-            background: transparent;
-            border: 0;
-            cursor: pointer;
-            padding: 4px;
-        }
-
-        .menu-toggle span {
-            display: block;
-            width: 24px;
-            height: 2px;
-            background: #10203a;
-            border-radius: 2px;
+        .logo-mark {
+            display: grid;
+            place-items: center;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--blue), var(--cyan));
+            color: white;
+            border-radius: 13px;
+            box-shadow: 0 10px 25px rgba(29, 111, 255, 0.28);
         }
 
         .site-nav {
             display: flex;
             align-items: center;
+            gap: 25px;
         }
 
         .site-nav a {
-            margin-left: 25px;
-            color: #10203a;
+            position: relative;
+            color: #34445d;
             text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            white-space: nowrap;
+        }
+
+        .site-nav a:not(.nav-cta)::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 100%;
+            bottom: -8px;
+            height: 2px;
+            background: var(--blue);
+            transition: right 0.25s ease;
+        }
+
+        .site-nav a:hover,
+        .site-nav a.active {
+            color: var(--blue);
+        }
+
+        .site-nav a:hover::after,
+        .site-nav a.active::after {
+            right: 0;
+        }
+
+        .site-nav .nav-cta {
+            padding: 11px 17px;
+            background: var(--blue);
+            color: white;
+            border-radius: 11px;
+            box-shadow: 0 10px 24px rgba(29, 111, 255, 0.25);
+        }
+
+        .site-nav .nav-cta:hover,
+        .site-nav .nav-cta.active {
+            background: var(--blue-dark);
+            color: white;
+        }
+
+        .menu-toggle {
+            display: none;
+            width: 45px;
+            height: 45px;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            gap: 5px;
+            background: var(--surface-soft);
+            border: 1px solid var(--line);
+            border-radius: 12px;
+        }
+
+        .menu-toggle span {
+            width: 23px;
+            height: 2px;
+            background: var(--navy);
+            border-radius: 2px;
+            transition: 0.25s ease;
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .menu-toggle[aria-expanded="true"] span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
         }
 
         .hero {
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            position: relative;
+            min-height: calc(100vh - 78px);
+            display: grid;
             align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+            padding: 80px 0;
+            background:
+                radial-gradient(circle at 12% 15%, rgba(32, 183, 237, 0.14), transparent 29%),
+                radial-gradient(circle at 90% 20%, rgba(29, 111, 255, 0.14), transparent 30%),
+                linear-gradient(180deg, #ffffff 0%, #f4f8ff 100%);
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            width: 440px;
+            height: 440px;
+            right: -240px;
+            bottom: -240px;
+            border: 70px solid rgba(29, 111, 255, 0.06);
+            border-radius: 50%;
+        }
+
+        .hero-grid {
+            position: relative;
+            display: grid;
+            grid-template-columns: 1.05fr 0.95fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            margin-bottom: 20px;
+            padding: 8px 12px;
+            background: #e9f1ff;
+            color: var(--blue);
+            border: 1px solid #d6e5ff;
+            border-radius: 999px;
+            font-size: 13px;
+            font-weight: 800;
+            letter-spacing: 0.6px;
+            text-transform: uppercase;
+        }
+
+        .eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--blue);
+            border-radius: 50%;
+            box-shadow: 0 0 0 5px rgba(29, 111, 255, 0.12);
         }
 
         .hero h1 {
-            max-width: 800px;
-            font-size: 55px;
-            margin-bottom: 20px;
+            max-width: 720px;
+            margin-bottom: 24px;
+            color: var(--navy);
+            font-size: clamp(42px, 5.5vw, 70px);
+            line-height: 1.05;
+            letter-spacing: -2.8px;
         }
 
         .hero h1 span {
-            color: #1769ff;
+            color: var(--blue);
         }
 
-        .hero p {
+        .hero-copy {
             max-width: 650px;
-            font-size: 20px;
-            line-height: 1.6;
-            color: #667085;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
+            color: var(--muted);
+            font-size: 19px;
+            line-height: 1.75;
+        }
+
+        .hero-actions,
+        .contact-actions {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 14px;
         }
 
         .button {
-            display: inline-block;
-            padding: 16px 30px;
-            background: #1769ff;
-            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 52px;
+            padding: 14px 22px;
+            border: 1px solid transparent;
+            border-radius: 13px;
             text-decoration: none;
-            border-radius: 10px;
-            font-weight: bold;
+            font-weight: 800;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
         }
 
         .button:hover {
-            background: #0d4fd1;
+            transform: translateY(-2px);
         }
-        .services {
-    padding: 80px 8%;
-    background: white;
-    text-align: center;
-}
 
-.services h2 {
-    font-size: 38px;
-    margin-bottom: 15px;
-}
+        .button-primary {
+            background: var(--blue);
+            color: white;
+            box-shadow: 0 14px 30px rgba(29, 111, 255, 0.28);
+        }
 
-.services-title {
-    color: #667085;
-    margin-bottom: 40px;
-}
+        .button-primary:hover {
+            background: var(--blue-dark);
+        }
 
-.service-list {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 25px;
-}
+        .button-secondary {
+            background: white;
+            color: var(--navy);
+            border-color: var(--line);
+            box-shadow: 0 10px 25px rgba(16, 32, 58, 0.06);
+        }
 
-.service-card {
-    padding: 35px 25px;
-    background: #f4f8ff;
-    border-radius: 18px;
-    transition: 0.3s;
-}
+        .button-secondary:hover {
+            border-color: #b7cdf0;
+            box-shadow: 0 14px 30px rgba(16, 32, 58, 0.1);
+        }
 
-.service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(23, 105, 255, 0.15);
-}
+        .hero-trust {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+            margin-top: 34px;
+            color: #445671;
+            font-size: 14px;
+            font-weight: 700;
+        }
 
-.service-icon {
-    font-size: 45px;
-    margin-bottom: 20px;
-}
+        .hero-trust span {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+        }
 
-.service-card h3 {
-    margin-bottom: 12px;
-}
+        .check {
+            display: grid;
+            place-items: center;
+            width: 21px;
+            height: 21px;
+            background: #dcf7ed;
+            color: var(--success);
+            border-radius: 50%;
+            font-size: 12px;
+        }
 
-.service-card p {
-    color: #667085;
-    line-height: 1.6;
-}
+        .hero-visual {
+            position: relative;
+        }
 
-@media (max-width: 768px) {
-    .menu-toggle {
-        display: flex;
-    }
+        .dashboard {
+            position: relative;
+            z-index: 2;
+            padding: 18px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid rgba(203, 219, 241, 0.9);
+            border-radius: 28px;
+            box-shadow: var(--shadow);
+            transform: rotate(1.5deg);
+        }
 
-    .site-nav {
-        display: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        flex-direction: column;
-        align-items: flex-start;
-        background: white;
-        padding: 15px 8%;
-        box-shadow: 0 12px 24px rgba(16, 32, 58, 0.12);
-    }
+        .dashboard-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 4px 4px 16px;
+        }
 
-    .site-nav.active {
-        display: flex;
-    }
+        .window-dots {
+            display: flex;
+            gap: 6px;
+        }
 
-    .site-nav a {
-        margin: 0 0 12px;
-        width: 100%;
-    }
+        .window-dots i {
+            width: 9px;
+            height: 9px;
+            background: #cad6e6;
+            border-radius: 50%;
+        }
 
-    .hero h1 {
-        font-size: 38px;
-    }
+        .dashboard-status {
+            padding: 6px 9px;
+            background: #dcf7ed;
+            color: var(--success);
+            border-radius: 999px;
+            font-size: 11px;
+            font-weight: 800;
+        }
 
-    .service-list {
-        grid-template-columns: 1fr;
-    }
-}.about {
-    padding: 100px 8%;
-    background: #10203a;
-    color: white;
-}
+        .dashboard-body {
+            display: grid;
+            grid-template-columns: 95px 1fr;
+            min-height: 390px;
+            overflow: hidden;
+            background: #f6f9fe;
+            border: 1px solid #e2ebf7;
+            border-radius: 19px;
+        }
 
-.about-text {
-    max-width: 750px;
-}
+        .mock-sidebar {
+            padding: 22px 12px;
+            background: var(--navy);
+        }
 
-.about-text span {
-    color: #4e8cff;
-    font-weight: bold;
-}
+        .mock-logo {
+            width: 42px;
+            height: 12px;
+            margin-bottom: 28px;
+            background: var(--blue);
+            border-radius: 5px;
+        }
 
-.about-text h2 {
-    font-size: 42px;
-    margin: 15px 0 20px;
-}
+        .mock-line {
+            height: 7px;
+            margin-bottom: 17px;
+            background: rgba(255, 255, 255, 0.18);
+            border-radius: 5px;
+        }
 
-.about-text p {
-    color: #c7d2e5;
-    font-size: 18px;
-    line-height: 1.7;
-}
+        .mock-line.active {
+            background: var(--cyan);
+        }
 
-.results {
-    display: flex;
-    gap: 60px;
-    margin-top: 40px;
-}
+        .mock-main {
+            padding: 24px;
+        }
 
-.results div {
-    display: flex;
-    flex-direction: column;
-}
+        .mock-title {
+            width: 42%;
+            height: 15px;
+            margin-bottom: 22px;
+            background: var(--navy);
+            border-radius: 6px;
+        }
 
-.results strong {
-    color: #4e8cff;
-    font-size: 32px;
-}
+        .metric-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 18px;
+        }
 
-.results small {
-    margin-top: 7px;
-    color: #c7d2e5;
-}
+        .metric {
+            min-height: 72px;
+            padding: 13px;
+            background: white;
+            border: 1px solid #e2ebf7;
+            border-radius: 13px;
+        }
 
-@media (max-width: 768px) {
-    .about-text h2 {
-        font-size: 32px;
-    }
+        .metric i,
+        .metric b {
+            display: block;
+            border-radius: 5px;
+        }
 
-    .results {
-        gap: 25px;
-        flex-wrap: wrap;
-    }
-}
+        .metric i {
+            width: 55%;
+            height: 7px;
+            margin-bottom: 13px;
+            background: #cbd8e9;
+        }
 
-.contact {
-    padding: 100px 8%;
-    background: #f4f8ff;
-    text-align: center;
-}
+        .metric b {
+            width: 72%;
+            height: 14px;
+            background: var(--blue);
+        }
 
-.contact-box {
-    max-width: 850px;
-    margin: auto;
-    padding: 60px 30px;
-    background: white;
-    border-radius: 25px;
-    box-shadow: 0 20px 50px rgba(23, 105, 255, 0.12);
-}
+        .chart {
+            position: relative;
+            height: 150px;
+            padding: 18px;
+            background: white;
+            border: 1px solid #e2ebf7;
+            border-radius: 15px;
+            overflow: hidden;
+        }
 
-.contact-box h2 {
-    font-size: 40px;
-    margin-bottom: 15px;
-}
+        .chart::before,
+        .chart::after {
+            content: "";
+            position: absolute;
+            inset: auto 18px 28px;
+            height: 2px;
+            background: #edf2f8;
+            box-shadow: 0 -36px #edf2f8, 0 -72px #edf2f8;
+        }
 
-.contact-box p {
-    color: #667085;
-    font-size: 18px;
-    line-height: 1.6;
-    margin-bottom: 30px;
-}
+        .chart::after {
+            inset: 48px 20px auto;
+            height: 58px;
+            background: linear-gradient(145deg, transparent 0 16%, var(--blue) 17% 20%, transparent 21% 34%, var(--blue) 35% 38%, transparent 39% 53%, var(--blue) 54% 57%, transparent 58% 70%, var(--cyan) 71% 75%, transparent 76%);
+            box-shadow: none;
+        }
 
-.contact-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 15px;
-    flex-wrap: wrap;
-}
+        .floating-card {
+            position: absolute;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            padding: 13px 16px;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 14px;
+            box-shadow: 0 18px 40px rgba(16, 32, 58, 0.15);
+            font-size: 13px;
+            font-weight: 800;
+        }
 
-.contact-button,
-.telegram-button {
-    padding: 16px 25px;
-    border-radius: 10px;
-    color: white;
-    text-decoration: none;
-    font-weight: bold;
-}
+        .floating-card.one {
+            top: 15%;
+            left: -35px;
+        }
 
-.contact-button {
-    background: #1769ff;
-}
+        .floating-card.two {
+            right: -30px;
+            bottom: 12%;
+        }
 
-.telegram-button {
-    background: #25a3e1;
-}
+        .float-icon {
+            display: grid;
+            place-items: center;
+            width: 34px;
+            height: 34px;
+            background: #eaf1ff;
+            border-radius: 10px;
+        }
 
-.contact-button:hover,
-.telegram-button:hover {
-    opacity: 0.85;
-}
+        .section {
+            padding: 105px 0;
+        }
 
-footer {
-    padding: 25px;
-    background: #10203a;
-    color: #c7d2e5;
-    text-align: center;
-}
+        .section-soft {
+            background: var(--surface-soft);
+        }
 
-@media (max-width: 768px) {
-    .contact-box h2 {
-        font-size: 30px;
-    }
-}
+        .section-dark {
+            background: var(--navy);
+            color: white;
+        }
 
-html {
-    scroll-behavior: smooth;
-}
+        .section-heading {
+            max-width: 720px;
+            margin: 0 auto 50px;
+            text-align: center;
+        }
 
-.reveal {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: 0.8s;
-}
+        .section-tag {
+            display: inline-block;
+            margin-bottom: 12px;
+            color: var(--blue);
+            font-size: 13px;
+            font-weight: 850;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
 
-.reveal.active {
-    opacity: 1;
-    transform: translateY(0);
-}
+        .section-dark .section-tag {
+            color: #62cfff;
+        }
+
+        .section-heading h2 {
+            margin-bottom: 16px;
+            color: var(--navy);
+            font-size: clamp(34px, 4vw, 48px);
+            line-height: 1.12;
+            letter-spacing: -1.5px;
+        }
+
+        .section-dark .section-heading h2 {
+            color: white;
+        }
+
+        .section-heading p {
+            color: var(--muted);
+            font-size: 18px;
+        }
+
+        .section-dark .section-heading p {
+            color: #b8c8de;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .service-card,
+        .reason-card {
+            padding: 32px;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            box-shadow: 0 12px 35px rgba(16, 32, 58, 0.06);
+            transition: transform 0.28s ease, box-shadow 0.28s ease, border-color 0.28s ease;
+        }
+
+        .service-card:hover,
+        .reason-card:hover {
+            transform: translateY(-7px);
+            border-color: #bcd2f5;
+            box-shadow: 0 20px 45px rgba(29, 111, 255, 0.12);
+        }
+
+        .card-icon {
+            display: grid;
+            place-items: center;
+            width: 58px;
+            height: 58px;
+            margin-bottom: 23px;
+            background: linear-gradient(135deg, #eaf1ff, #e6faff);
+            color: var(--blue);
+            border-radius: 17px;
+            font-size: 26px;
+            font-weight: 850;
+        }
+
+        .service-card h3,
+        .reason-card h3 {
+            margin-bottom: 12px;
+            font-size: 22px;
+        }
+
+        .service-card p,
+        .reason-card p {
+            color: var(--muted);
+        }
+
+        .service-list {
+            display: grid;
+            gap: 9px;
+            margin-top: 20px;
+            list-style: none;
+            color: #41536e;
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .service-list li::before {
+            content: "✓";
+            margin-right: 8px;
+            color: var(--success);
+            font-weight: 900;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 24px;
+        }
+
+        .project-card {
+            position: relative;
+            overflow: hidden;
+            padding: 35px;
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 26px;
+            box-shadow: 0 15px 40px rgba(16, 32, 58, 0.07);
+            transition: transform 0.28s ease, box-shadow 0.28s ease;
+        }
+
+        .project-card::after {
+            content: "";
+            position: absolute;
+            top: -65px;
+            right: -65px;
+            width: 170px;
+            height: 170px;
+            background: rgba(29, 111, 255, 0.08);
+            border-radius: 50%;
+        }
+
+        .project-card:hover {
+            transform: translateY(-7px);
+            box-shadow: 0 22px 55px rgba(29, 111, 255, 0.14);
+        }
+
+        .project-top {
+            position: relative;
+            z-index: 1;
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 20px;
+            margin-bottom: 23px;
+        }
+
+        .project-icon {
+            display: grid;
+            place-items: center;
+            width: 60px;
+            height: 60px;
+            background: #eaf1ff;
+            border-radius: 17px;
+            color: var(--blue);
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 0.4px;
+        }
+
+        .project-type {
+            padding: 7px 10px;
+            background: #f0f5fc;
+            color: #53657f;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        .project-card h3 {
+            margin-bottom: 11px;
+            font-size: 26px;
+        }
+
+        .project-card > p {
+            margin-bottom: 22px;
+            color: var(--muted);
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 24px;
+        }
+
+        .project-tags span {
+            padding: 7px 11px;
+            background: #f1f5fb;
+            color: #40516d;
+            border-radius: 999px;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .text-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            color: var(--blue);
+            text-decoration: none;
+            font-weight: 850;
+        }
+
+        .text-link:hover {
+            text-decoration: underline;
+        }
+
+        .reason-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 18px;
+        }
+
+        .reason-card {
+            padding: 27px;
+        }
+
+        .reason-card .card-icon {
+            width: 52px;
+            height: 52px;
+            margin-bottom: 19px;
+            font-size: 22px;
+        }
+
+        .reason-card h3 {
+            font-size: 19px;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 16px;
+        }
+
+        .process-card {
+            position: relative;
+            min-height: 215px;
+            padding: 28px 24px;
+            background: var(--navy-soft);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+        }
+
+        .process-number {
+            display: inline-grid;
+            place-items: center;
+            width: 42px;
+            height: 42px;
+            margin-bottom: 28px;
+            background: var(--blue);
+            color: white;
+            border-radius: 12px;
+            font-weight: 900;
+        }
+
+        .process-card h3 {
+            margin-bottom: 9px;
+            font-size: 18px;
+        }
+
+        .process-card p {
+            color: #b8c8de;
+            font-size: 14px;
+        }
+
+        .capability-strip {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border: 1px solid var(--line);
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 16px 42px rgba(16, 32, 58, 0.08);
+        }
+
+        .capability {
+            min-height: 145px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 25px;
+            background: white;
+            text-align: center;
+        }
+
+        .capability + .capability {
+            border-left: 1px solid var(--line);
+        }
+
+        .capability strong {
+            color: var(--blue);
+            font-size: 24px;
+        }
+
+        .capability span {
+            color: var(--muted);
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .faq-layout {
+            display: grid;
+            grid-template-columns: 0.75fr 1.25fr;
+            align-items: start;
+            gap: 70px;
+        }
+
+        .faq-intro {
+            position: sticky;
+            top: 115px;
+        }
+
+        .faq-intro h2 {
+            margin: 12px 0 18px;
+            font-size: clamp(34px, 4vw, 47px);
+            line-height: 1.12;
+            letter-spacing: -1.3px;
+        }
+
+        .faq-intro p {
+            margin-bottom: 25px;
+            color: var(--muted);
+        }
+
+        .faq-list {
+            display: grid;
+            gap: 13px;
+        }
+
+        .faq-item {
+            background: white;
+            border: 1px solid var(--line);
+            border-radius: 17px;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            padding: 21px 23px;
+            background: transparent;
+            color: var(--navy);
+            border: 0;
+            text-align: left;
+            font-weight: 820;
+        }
+
+        .faq-plus {
+            flex: 0 0 auto;
+            display: grid;
+            place-items: center;
+            width: 31px;
+            height: 31px;
+            background: #edf3fd;
+            color: var(--blue);
+            border-radius: 9px;
+            font-size: 20px;
+            transition: transform 0.25s ease;
+        }
+
+        .faq-question[aria-expanded="true"] .faq-plus {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            display: grid;
+            grid-template-rows: 0fr;
+            transition: grid-template-rows 0.3s ease;
+        }
+
+        .faq-answer > div {
+            overflow: hidden;
+        }
+
+        .faq-answer p {
+            padding: 0 23px 22px;
+            color: var(--muted);
+        }
+
+        .faq-item.open .faq-answer {
+            grid-template-rows: 1fr;
+        }
+
+        .contact-section {
+            position: relative;
+            background: linear-gradient(145deg, var(--navy), #102f59);
+            color: white;
+            overflow: hidden;
+        }
+
+        .contact-section::before,
+        .contact-section::after {
+            content: "";
+            position: absolute;
+            border-radius: 50%;
+        }
+
+        .contact-section::before {
+            width: 350px;
+            height: 350px;
+            top: -210px;
+            right: -100px;
+            border: 65px solid rgba(32, 183, 237, 0.12);
+        }
+
+        .contact-section::after {
+            width: 260px;
+            height: 260px;
+            left: -160px;
+            bottom: -150px;
+            background: rgba(29, 111, 255, 0.14);
+        }
+
+        .contact-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 0.85fr 1.15fr;
+            align-items: center;
+            gap: 70px;
+        }
+
+        .contact-copy h2 {
+            margin: 13px 0 20px;
+            font-size: clamp(38px, 4.5vw, 55px);
+            line-height: 1.08;
+            letter-spacing: -1.8px;
+        }
+
+        .contact-copy > p {
+            margin-bottom: 28px;
+            color: #c1d0e3;
+            font-size: 18px;
+        }
+
+        .contact-list {
+            display: grid;
+            gap: 13px;
+            list-style: none;
+        }
+
+        .contact-list a {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            font-weight: 750;
+        }
+
+        .contact-form {
+            padding: 34px;
+            background: white;
+            color: var(--text);
+            border-radius: 25px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.22);
+        }
+
+        .contact-form h3 {
+            margin-bottom: 7px;
+            font-size: 26px;
+        }
+
+        .form-note {
+            margin-bottom: 24px;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 17px;
+        }
+
+        .field {
+            display: grid;
+            gap: 7px;
+        }
+
+        .field.full {
+            grid-column: 1 / -1;
+        }
+
+        .field label {
+            color: #35465f;
+            font-size: 13px;
+            font-weight: 800;
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            padding: 13px 14px;
+            background: #f8faff;
+            color: var(--text);
+            border: 1px solid #d9e4f3;
+            border-radius: 11px;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .field textarea {
+            min-height: 105px;
+            resize: vertical;
+        }
+
+        .field input:focus,
+        .field select:focus,
+        .field textarea:focus {
+            border-color: var(--blue);
+            box-shadow: 0 0 0 4px rgba(29, 111, 255, 0.12);
+        }
+
+        .form-submit {
+            width: 100%;
+            margin-top: 19px;
+            border: 0;
+        }
+
+        .form-status {
+            min-height: 22px;
+            margin-top: 13px;
+            color: var(--success);
+            font-size: 13px;
+            font-weight: 750;
+        }
+
+        .form-privacy {
+            margin-top: 10px;
+            color: #7a8ba3;
+            font-size: 11px;
+            text-align: center;
+        }
+
+        .site-footer {
+            padding: 34px 0;
+            background: #07172d;
+            color: #b4c3d8;
+        }
+
+        .footer-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 25px;
+        }
+
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-brand .logo-mark {
+            width: 36px;
+            height: 36px;
+        }
+
+        .footer-brand strong {
+            display: block;
+            color: white;
+        }
+
+        .footer-brand small {
+            display: block;
+            color: #8295af;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        .footer-links a {
+            color: #b4c3d8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 650;
+        }
+
+        .footer-links a:hover {
+            color: white;
+        }
+
+        .scroll-top {
+            position: fixed;
+            right: 22px;
+            bottom: 22px;
+            z-index: 1500;
+            width: 46px;
+            height: 46px;
+            display: grid;
+            place-items: center;
+            background: var(--blue);
+            color: white;
+            border: 0;
+            border-radius: 13px;
+            box-shadow: 0 15px 30px rgba(29, 111, 255, 0.3);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(12px);
+            transition: 0.25s ease;
+        }
+
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .js .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.65s ease, transform 0.65s ease;
+        }
+
+        .js .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (max-width: 1050px) {
+            .site-nav {
+                gap: 17px;
+            }
+
+            .site-nav a {
+                font-size: 13px;
+            }
+
+            .hero-grid {
+                gap: 40px;
+            }
+
+            .reason-grid,
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .process-card:last-child {
+                grid-column: 1 / -1;
+            }
+        }
+
+        @media (max-width: 860px) {
+            .container {
+                width: min(100% - 32px, 720px);
+            }
+
+            .menu-toggle {
+                display: flex;
+            }
+
+            .site-nav {
+                position: fixed;
+                top: 78px;
+                left: 16px;
+                right: 16px;
+                z-index: 2100;
+                display: grid;
+                gap: 5px;
+                padding: 15px;
+                background: white;
+                border: 1px solid var(--line);
+                border-radius: 17px;
+                box-shadow: var(--shadow);
+                opacity: 0;
+                visibility: hidden;
+                transform: translateY(-12px);
+                transition: 0.25s ease;
+            }
+
+            .site-nav.active {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+
+            .site-nav a,
+            .site-nav .nav-cta {
+                display: block;
+                padding: 12px 13px;
+                margin: 0;
+                background: transparent;
+                color: var(--navy);
+                border-radius: 10px;
+                box-shadow: none;
+                font-size: 15px;
+            }
+
+            .site-nav a:hover,
+            .site-nav a.active,
+            .site-nav .nav-cta:hover,
+            .site-nav .nav-cta.active {
+                background: var(--surface-soft);
+                color: var(--blue);
+            }
+
+            .site-nav a::after {
+                display: none;
+            }
+
+            .hero {
+                min-height: auto;
+                padding: 70px 0 85px;
+            }
+
+            .hero-grid,
+            .contact-grid,
+            .faq-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                text-align: center;
+            }
+
+            .hero-copy {
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            .hero-actions,
+            .hero-trust {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                width: min(590px, 100%);
+                margin: 20px auto 0;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .service-card {
+                display: grid;
+                grid-template-columns: auto 1fr;
+                column-gap: 22px;
+            }
+
+            .service-card .card-icon {
+                grid-row: 1 / 4;
+            }
+
+            .service-list {
+                grid-column: 2;
+            }
+
+            .capability-strip {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .capability + .capability {
+                border-left: 0;
+            }
+
+            .capability:nth-child(even) {
+                border-left: 1px solid var(--line);
+            }
+
+            .capability:nth-child(n + 3) {
+                border-top: 1px solid var(--line);
+            }
+
+            .faq-intro {
+                position: static;
+                text-align: center;
+            }
+
+            .faq-intro .button {
+                margin: 0 auto;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                width: min(100% - 28px, 560px);
+            }
+
+            .header-inner {
+                min-height: 70px;
+            }
+
+            .logo {
+                font-size: 17px;
+            }
+
+            .logo-mark {
+                width: 36px;
+                height: 36px;
+            }
+
+            .site-nav {
+                top: 70px;
+                left: 12px;
+                right: 12px;
+            }
+
+            .hero {
+                padding: 55px 0 70px;
+            }
+
+            .eyebrow {
+                font-size: 11px;
+            }
+
+            .hero h1 {
+                font-size: clamp(38px, 12vw, 52px);
+                letter-spacing: -1.8px;
+            }
+
+            .hero-copy {
+                font-size: 16px;
+            }
+
+            .hero-actions .button,
+            .contact-actions .button {
+                width: 100%;
+            }
+
+            .hero-trust {
+                display: grid;
+                justify-content: start;
+                width: fit-content;
+                margin-right: auto;
+                margin-left: auto;
+                text-align: left;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .section {
+                padding: 78px 0;
+            }
+
+            .section-heading {
+                margin-bottom: 36px;
+            }
+
+            .section-heading h2 {
+                font-size: 34px;
+            }
+
+            .section-heading p {
+                font-size: 16px;
+            }
+
+            .service-card {
+                display: block;
+                padding: 27px 24px;
+            }
+
+            .service-list {
+                grid-column: auto;
+            }
+
+            .portfolio-grid,
+            .reason-grid,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .project-card {
+                padding: 28px 24px;
+            }
+
+            .process-card:last-child {
+                grid-column: auto;
+            }
+
+            .capability-strip {
+                grid-template-columns: 1fr;
+            }
+
+            .capability:nth-child(even) {
+                border-left: 0;
+            }
+
+            .capability + .capability {
+                border-top: 1px solid var(--line);
+            }
+
+            .faq-layout {
+                gap: 38px;
+            }
+
+            .contact-grid {
+                gap: 40px;
+            }
+
+            .contact-copy {
+                text-align: center;
+            }
+
+            .contact-list {
+                width: fit-content;
+                margin: 0 auto;
+                text-align: left;
+            }
+
+            .contact-form {
+                padding: 26px 20px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field.full {
+                grid-column: auto;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-links {
+                justify-content: center;
+            }
+
+            .scroll-top {
+                right: 14px;
+                bottom: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *,
+            *::before,
+            *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
     </style>
+
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "name": "Pixel IT Group",
+        "description": "Veb-sayt, CRM va sun’iy intellekt avtomatlashtirish xizmatlari",
+        "telephone": "+998700266000",
+        "areaServed": "UZ",
+        "sameAs": ["https://t.me/Manager_sp01"]
+    }
+    </script>
 </head>
 
 <body>
+    <a class="skip-link" href="#main">Asosiy qismga o‘tish</a>
 
-    <header>
-        <div class="logo">PIXEL IT GROUP</div>
+    <header class="site-header">
+        <div class="container header-inner">
+            <a class="logo" href="#home" aria-label="Pixel IT Group bosh sahifa">
+                <span class="logo-mark">P</span>
+                <span>PIXEL IT GROUP</span>
+            </a>
 
-        <button class="menu-toggle" type="button" aria-label="Menyuni ochish" aria-expanded="false" aria-controls="site-nav">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
+            <button class="menu-toggle" type="button" aria-label="Menyuni ochish" aria-expanded="false" aria-controls="site-nav">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
 
-        <nav class="site-nav" id="site-nav">
-            <a href="#home">Bosh sahifa</a>
-            <a href="#services">Xizmatlar</a>
-            <a href="#about">Biz haqimizda</a>
-            <a href="#contact">Bog‘lanish</a>
-        </nav>
+            <nav class="site-nav" id="site-nav" aria-label="Asosiy menyu">
+                <a href="#home">Bosh sahifa</a>
+                <a href="#services">Xizmatlar</a>
+                <a href="#portfolio">Loyihalar</a>
+                <a href="#process">Jarayon</a>
+                <a href="#faq">Savollar</a>
+                <a class="nav-cta" href="#contact">Bog‘lanish</a>
+            </nav>
+        </div>
     </header>
 
-    <section class="hero" id="home">
-        <h1>Biznesingizni <span>raqamli dunyoda</span> rivojlantiramiz</h1>
+    <main id="main">
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+                <div class="hero-content reveal active">
+                    <div class="eyebrow"><span class="eyebrow-dot"></span> Biznes uchun IT yechimlar</div>
+                    <h1>Biznesingizni <span>raqamli tizimlar</span> bilan rivojlantiramiz</h1>
+                    <p class="hero-copy">
+                        Professional veb-saytlar, CRM platformalar va sun’iy intellekt
+                        avtomatlashtirish orqali ish jarayonlaringizni tezlashtiramiz.
+                    </p>
 
-        <p>
-            Professional veb-saytlar, CRM tizimlari va sun’iy intellekt
-            asosidagi avtomatlashtirish xizmatlarini yaratamiz.
-        </p>
+                    <div class="hero-actions">
+                        <a class="button button-primary" href="#contact">Bepul konsultatsiya <span aria-hidden="true">→</span></a>
+                        <a class="button button-secondary" href="#portfolio">Loyihalarni ko‘rish</a>
+                    </div>
 
-        <a class="button" href="https://t.me/Manager_sp01">
-            Bepul konsultatsiya
-        </a>
-    </section>
+                    <div class="hero-trust">
+                        <span><i class="check">✓</i> Mobilga mos</span>
+                        <span><i class="check">✓</i> Individual yechim</span>
+                        <span><i class="check">✓</i> Texnik yordam</span>
+                    </div>
+                </div>
 
-    <section class="services" id="services">
-        <h2>Xizmatlar</h2>
-        <p class="services-title">
-            Biznesingiz uchun kerakli digital yechimlarni tez va sifatli tarzda yaratamiz.
-        </p>
+                <div class="hero-visual reveal" aria-hidden="true">
+                    <div class="floating-card one"><span class="float-icon">⚡</span> Jarayonlar tezlashadi</div>
+                    <div class="floating-card two"><span class="float-icon">📈</span> Savdo nazoratda</div>
 
-        <div class="service-list">
-            <div class="service-card">
-                <div class="service-icon">🌐</div>
-                <h3>Veb-saytlar</h3>
-                <p>Modern va tezkor saytlari orqali brending va sotuvni oshiramiz.</p>
+                    <div class="dashboard">
+                        <div class="dashboard-top">
+                            <span class="window-dots"><i></i><i></i><i></i></span>
+                            <span class="dashboard-status">Tizim ishlamoqda</span>
+                        </div>
+                        <div class="dashboard-body">
+                            <aside class="mock-sidebar">
+                                <div class="mock-logo"></div>
+                                <div class="mock-line active"></div>
+                                <div class="mock-line"></div>
+                                <div class="mock-line"></div>
+                                <div class="mock-line"></div>
+                            </aside>
+                            <div class="mock-main">
+                                <div class="mock-title"></div>
+                                <div class="metric-grid">
+                                    <div class="metric"><i></i><b></b></div>
+                                    <div class="metric"><i></i><b></b></div>
+                                    <div class="metric"><i></i><b></b></div>
+                                </div>
+                                <div class="chart"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="services">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="section-tag">Xizmatlar</span>
+                    <h2>Biznesingiz uchun kerakli barcha raqamli yechimlar</h2>
+                    <p>Har bir loyiha biznesingiz maqsadi va jarayonlariga moslab ishlab chiqiladi.</p>
+                </div>
+
+                <div class="card-grid">
+                    <article class="service-card reveal">
+                        <div class="card-icon">W</div>
+                        <div>
+                            <h3>Veb-sayt yaratish</h3>
+                            <p>Sotuvga yo‘naltirilgan landing page va professional korporativ saytlar.</p>
+                        </div>
+                        <ul class="service-list">
+                            <li>Telefon va kompyuterga mos</li>
+                            <li>Tez va qulay ishlash</li>
+                            <li>SEO uchun tayyor</li>
+                        </ul>
+                    </article>
+
+                    <article class="service-card reveal">
+                        <div class="card-icon">C</div>
+                        <div>
+                            <h3>CRM tizimlari</h3>
+                            <p>Mijozlar, leadlar, sotuv va xodimlarni yagona tizimda boshqarish.</p>
+                        </div>
+                        <ul class="service-list">
+                            <li>Leadlar nazorati</li>
+                            <li>Avtomatik vazifalar</li>
+                            <li>Hisobot va analitika</li>
+                        </ul>
+                    </article>
+
+                    <article class="service-card reveal">
+                        <div class="card-icon">AI</div>
+                        <div>
+                            <h3>AI avtomatlashtirish</h3>
+                            <p>Mijozlarga javob, saralash va sotuv jarayonlari uchun AI yordamchilar.</p>
+                        </div>
+                        <ul class="service-list">
+                            <li>24/7 avtomatik javob</li>
+                            <li>Leadlarni saralash</li>
+                            <li>CRM bilan integratsiya</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft" id="portfolio">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="section-tag">Bizning loyihalar</span>
+                    <h2>Biz yaratgan raqamli platformalar</h2>
+                    <p>Turli sohalardagi biznes jarayonlarini avtomatlashtiradigan yechimlar.</p>
+                </div>
+
+                <div class="portfolio-grid">
+                    <article class="project-card reveal">
+                        <div class="project-top">
+                            <div class="project-icon">POS</div>
+                            <span class="project-type">SaaS platforma</span>
+                        </div>
+                        <h3>Pixel POS</h3>
+                        <p>Restoran va kafelar uchun buyurtma, oshxona, ombor, stol va moliyani boshqarish tizimi.</p>
+                        <div class="project-tags"><span>Restoran</span><span>Savdo</span><span>Analitika</span></div>
+                        <a class="text-link project-inquiry" href="#contact" data-service="Pixel POS / LMS">Loyiha haqida so‘rash <span>→</span></a>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-top">
+                            <div class="project-icon">LMS</div>
+                            <span class="project-type">Ta’lim platformasi</span>
+                        </div>
+                        <h3>LMS Pixel</h3>
+                        <p>O‘quv markazlari uchun davomat, baholar, to‘lovlar va ota-onalar bilan aloqani boshqarish.</p>
+                        <div class="project-tags"><span>Ta’lim</span><span>Davomat</span><span>Moliya</span></div>
+                        <a class="text-link project-inquiry" href="#contact" data-service="Pixel POS / LMS">Loyiha haqida so‘rash <span>→</span></a>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-top">
+                            <div class="project-icon">CRM</div>
+                            <span class="project-type">CRM platforma</span>
+                        </div>
+                        <h3>Travel CRM</h3>
+                        <p>Turagentliklar uchun mijozlar, turlar, bronlar, hujjatlar va sotuvlarni bir joyda boshqarish.</p>
+                        <div class="project-tags"><span>Turizm</span><span>CRM</span><span>Bron</span></div>
+                        <a class="text-link project-inquiry" href="#contact" data-service="CRM tizimi">Loyiha haqida so‘rash <span>→</span></a>
+                    </article>
+
+                    <article class="project-card reveal">
+                        <div class="project-top">
+                            <div class="project-icon">AI</div>
+                            <span class="project-type">AI yechim</span>
+                        </div>
+                        <h3>AI Sales Manager</h3>
+                        <p>Mijozlarga javob beradigan, ehtiyojini aniqlaydigan va leadlarni CRM tizimiga yuboradigan AI.</p>
+                        <div class="project-tags"><span>AI</span><span>Sotuv</span><span>Avtomatlashtirish</span></div>
+                        <a class="text-link project-inquiry" href="#contact" data-service="AI avtomatlashtirish">Loyiha haqida so‘rash <span>→</span></a>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="advantages">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="section-tag">Nega biz?</span>
+                    <h2>Faqat kod emas, biznes uchun ishlaydigan yechim</h2>
+                    <p>Loyihani tushunishdan boshlab ishga tushirish va qo‘llab-quvvatlashgacha birga ishlaymiz.</p>
+                </div>
+
+                <div class="reason-grid">
+                    <article class="reason-card reveal"><div class="card-icon">01</div><h3>Individual yondashuv</h3><p>Tayyor shablon emas, biznesingizga mos yechim.</p></article>
+                    <article class="reason-card reveal"><div class="card-icon">02</div><h3>Qulay interfeys</h3><p>Mijoz va xodimlar uchun sodda, tushunarli foydalanish.</p></article>
+                    <article class="reason-card reveal"><div class="card-icon">03</div><h3>Mobil moslashuv</h3><p>Sayt va tizimlar barcha qurilmada qulay ishlaydi.</p></article>
+                    <article class="reason-card reveal"><div class="card-icon">04</div><h3>Texnik yordam</h3><p>Ishga tushirilgandan keyin ham maslahat va yordam.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-dark" id="process">
+            <div class="container">
+                <div class="section-heading reveal">
+                    <span class="section-tag">Ishlash jarayoni</span>
+                    <h2>G‘oyadan tayyor tizimgacha 5 bosqich</h2>
+                    <p>Har bir bosqich tushunarli va nazorat qilinadigan tartibda olib boriladi.</p>
+                </div>
+
+                <div class="process-grid">
+                    <article class="process-card reveal"><span class="process-number">1</span><h3>Tahlil</h3><p>Vazifa, auditoriya va biznes maqsadini o‘rganamiz.</p></article>
+                    <article class="process-card reveal"><span class="process-number">2</span><h3>Struktura</h3><p>Sayt yoki tizimning bo‘limlari va funksiyalarini belgilaymiz.</p></article>
+                    <article class="process-card reveal"><span class="process-number">3</span><h3>Dizayn</h3><p>Brendingizga mos qulay va zamonaviy ko‘rinish yaratamiz.</p></article>
+                    <article class="process-card reveal"><span class="process-number">4</span><h3>Dasturlash</h3><p>Tasdiqlangan dizayn va funksiyalarni ishlab chiqamiz.</p></article>
+                    <article class="process-card reveal"><span class="process-number">5</span><h3>Test va start</h3><p>Barcha qurilmada tekshirib, loyihani ishga tushiramiz.</p></article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section section-soft">
+            <div class="container">
+                <div class="capability-strip reveal">
+                    <div class="capability"><strong>WEB</strong><span>Professional saytlar</span></div>
+                    <div class="capability"><strong>CRM</strong><span>Jarayonlar nazorati</span></div>
+                    <div class="capability"><strong>AI</strong><span>Aqlli avtomatlashtirish</span></div>
+                    <div class="capability"><strong>SUPPORT</strong><span>Texnik yordam</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="faq">
+            <div class="container faq-layout">
+                <div class="faq-intro reveal">
+                    <span class="section-tag">Ko‘p so‘raladigan savollar</span>
+                    <h2>Savollaringizga qisqa javoblar</h2>
+                    <p>Qo‘shimcha savol bo‘lsa, konsultatsiya uchun Telegram orqali yozishingiz mumkin.</p>
+                    <a class="button button-secondary" href="https://t.me/Manager_sp01" target="_blank" rel="noopener noreferrer">Telegram’dan so‘rash</a>
+                </div>
+
+                <div class="faq-list">
+                    <article class="faq-item reveal">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>Sayt yoki tizim qancha vaqtda tayyor bo‘ladi?</span><span class="faq-plus">+</span></button>
+                        <div class="faq-answer"><div><p>Muddat loyiha hajmi va funksiyalariga bog‘liq. Talablar aniqlangach, aniq reja va muddat taqdim etiladi.</p></div></div>
+                    </article>
+                    <article class="faq-item reveal">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>Xizmat narxi qanday aniqlanadi?</span><span class="faq-plus">+</span></button>
+                        <div class="faq-answer"><div><p>Narx dizayn, sahifalar soni, funksiyalar va integratsiyalarga qarab hisoblanadi. Dastlabki konsultatsiyadan so‘ng taklif beriladi.</p></div></div>
+                    </article>
+                    <article class="faq-item reveal">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>Sayt telefonlarda ham ishlaydimi?</span><span class="faq-plus">+</span></button>
+                        <div class="faq-answer"><div><p>Ha. Barcha saytlar telefon, planshet va kompyuter ekranlariga moslashtiriladi hamda asosiy brauzerlarda tekshiriladi.</p></div></div>
+                    </article>
+                    <article class="faq-item reveal">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>Loyiha ishga tushgach yordam berasizmi?</span><span class="faq-plus">+</span></button>
+                        <div class="faq-answer"><div><p>Ha. Kelishuvga muvofiq texnik maslahat, xatolarni tuzatish va keyingi rivojlantirish bo‘yicha yordam ko‘rsatiladi.</p></div></div>
+                    </article>
+                    <article class="faq-item reveal">
+                        <button class="faq-question" type="button" aria-expanded="false"><span>Mavjud tizimlar bilan integratsiya qilish mumkinmi?</span><span class="faq-plus">+</span></button>
+                        <div class="faq-answer"><div><p>Ko‘p hollarda mumkin. Mavjud CRM, to‘lov, messenjer yoki boshqa servisning texnik imkoniyatlari avval tekshiriladi.</p></div></div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section class="section contact-section" id="contact">
+            <div class="container contact-grid">
+                <div class="contact-copy reveal">
+                    <span class="section-tag">Bepul konsultatsiya</span>
+                    <h2>Loyihangizni birgalikda boshlaymiz</h2>
+                    <p>Ma’lumotlaringizni qoldiring. Forma xabaringizni tayyorlaydi va Telegram chatini ochadi.</p>
+
+                    <ul class="contact-list">
+                        <li><a href="tel:+998700266000"><span>☎</span> +998&nbsp;70&nbsp;026&nbsp;60&nbsp;00</a></li>
+                        <li><a href="https://t.me/Manager_sp01" target="_blank" rel="noopener noreferrer"><span>✈</span> @Manager_sp01</a></li>
+                    </ul>
+                </div>
+
+                <form class="contact-form reveal" id="lead-form" novalidate>
+                    <h3>Ariza qoldirish</h3>
+                    <p class="form-note">Majburiy maydonlarni to‘ldiring. Xabar nusxalanib, Telegram ochiladi.</p>
+
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="name">Ismingiz *</label>
+                            <input id="name" name="name" type="text" autocomplete="name" placeholder="Ismingiz" minlength="2" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="phone">Telefon raqamingiz *</label>
+                            <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" placeholder="+998 90 123 45 67" pattern="[+0-9() -]{7,20}" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="service">Kerakli xizmat *</label>
+                            <select id="service" name="service" required>
+                                <option value="">Xizmatni tanlang</option>
+                                <option>Veb-sayt / Landing page</option>
+                                <option>CRM tizimi</option>
+                                <option>AI avtomatlashtirish</option>
+                                <option>Pixel POS / LMS</option>
+                                <option>Boshqa loyiha</option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="budget">Loyiha hajmi</label>
+                            <select id="budget" name="budget">
+                                <option>Aniqlanmagan</option>
+                                <option>Kichik loyiha</option>
+                                <option>O‘rta loyiha</option>
+                                <option>Katta loyiha</option>
+                            </select>
+                        </div>
+
+                        <div class="field full">
+                            <label for="message">Loyiha haqida qisqacha</label>
+                            <textarea id="message" name="message" placeholder="Nima yaratmoqchisiz?"></textarea>
+                        </div>
+                    </div>
+
+                    <button class="button button-primary form-submit" type="submit">Xabarni tayyorlash va Telegram’ni ochish</button>
+                    <p class="form-status" id="form-status" role="status" aria-live="polite"></p>
+                    <p class="form-privacy">Sayt maxfiy parol yoki bank ma’lumotlarini so‘ramaydi.</p>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-mark">P</span>
+                <div><strong>Pixel IT Group</strong><small>Biznesingiz uchun IT hamkor</small></div>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon">📊</div>
-                <h3>CRM tizimlari</h3>
-                <p>Mijozlar bilan ishlashni avtomatlashtirish va jarayonlarni tartibga solish.</p>
+            <div class="footer-links">
+                <a href="#services">Xizmatlar</a>
+                <a href="#portfolio">Loyihalar</a>
+                <a href="#faq">Savollar</a>
+                <a href="https://t.me/Manager_sp01" target="_blank" rel="noopener noreferrer">Telegram</a>
             </div>
 
-            <div class="service-card">
-                <div class="service-icon">🤖</div>
-                <h3>AI avtomatlashtirish</h3>
-                <p>Sun’iy intellekt yordamida tezkor va samarali operatsiyalarni yo‘lga qo‘yamiz.</p>
-            </div>
+            <small>© <span id="current-year">2026</span> Pixel IT Group</small>
         </div>
-    </section>
+    </footer>
 
-    <section class="about" id="about">
-    <div class="about-text">
-        <span>PIXEL IT GROUP</span>
-        <h2>Biznesingiz uchun ishonchli IT hamkor</h2>
+    <button class="scroll-top" type="button" aria-label="Yuqoriga qaytish">↑</button>
 
-        <p>
-            Biz kompaniyalarga professional veb-saytlar, CRM tizimlari
-            va sun’iy intellekt asosidagi yechimlarni yaratib beramiz.
-        </p>
+    <script>
+        const menuToggle = document.querySelector(".menu-toggle");
+        const siteNav = document.querySelector(".site-nav");
+        const navLinks = document.querySelectorAll(".site-nav a");
+        const scrollTopButton = document.querySelector(".scroll-top");
 
-        <div class="results">
-            <div>
-                <strong>50+</strong>
-                <small>Loyihalar</small>
-            </div>
+        function closeMenu() {
+            siteNav.classList.remove("active");
+            menuToggle.setAttribute("aria-expanded", "false");
+            document.body.classList.remove("menu-open");
+        }
 
-            <div>
-                <strong>30+</strong>
-                <small>Mijozlar</small>
-            </div>
-
-            <div>
-                <strong>3 yil</strong>
-                <small>Tajriba</small>
-            </div>
-        </div>
-    </div>
-</section>
-<section class="contact" id="contact">
-    <div class="contact-box">
-        <h2>Loyihangizni boshlashga tayyormisiz?</h2>
-
-        <p>
-            Bepul konsultatsiya oling va biznesingiz uchun mos
-            IT yechimni birgalikda tanlaymiz.
-        </p>
-
-        <div class="contact-buttons">
-            <a href="tel:+998700266000" class="contact-button">
-                📞 Qo‘ng‘iroq qilish
-            </a>
-
-            <a href="https://t.me/Manager_sp01"
-               target="_blank"
-               class="telegram-button">
-                💬 Telegram’dan yozish
-            </a>
-        </div>
-    </div>
-</section>
-
-<footer>
-    <p>© 2026 Pixel IT Group. Barcha huquqlar himoyalangan.</p>
-</footer>
-<script>
-    const sections = document.querySelectorAll("section");
-
-    sections.forEach(function(section) {
-        section.classList.add("reveal");
-    });
-
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(function(entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add("active");
-            }
-        });
-    });
-
-    sections.forEach(function(section) {
-        observer.observe(section);
-    });
-
-    const menuToggle = document.querySelector(".menu-toggle");
-    const siteNav = document.querySelector(".site-nav");
-    const navLinks = document.querySelectorAll(".site-nav a");
-
-    if (menuToggle && siteNav) {
         menuToggle.addEventListener("click", function() {
             const isOpen = siteNav.classList.toggle("active");
             menuToggle.setAttribute("aria-expanded", String(isOpen));
+            document.body.classList.toggle("menu-open", isOpen);
         });
 
         navLinks.forEach(function(link) {
-            link.addEventListener("click", function(event) {
-                event.preventDefault();
-
-                const targetId = this.getAttribute("href");
-                const targetSection = document.querySelector(targetId);
-
-                siteNav.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
-
-                if (targetSection) {
-                    // Avval mobil menyuni yopamiz, keyin kerakli bo‘limga o'tamiz.
-                    // Kichik kechikish menyu yopilishi scroll animatsiyasini
-                    // bekor qilishining oldini oladi.
-                    window.setTimeout(function() {
-                        targetSection.scrollIntoView({
-                            behavior: "smooth",
-                            block: "start"
-                        });
-
-                        if (window.history && window.history.replaceState) {
-                            window.history.replaceState(null, "", targetId);
-                        }
-                    }, 80);
-                }
-            });
+            link.addEventListener("click", closeMenu);
         });
 
         document.addEventListener("click", function(event) {
             if (
-                window.innerWidth <= 768 &&
                 siteNav.classList.contains("active") &&
                 !siteNav.contains(event.target) &&
                 !menuToggle.contains(event.target)
             ) {
-                siteNav.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
+                closeMenu();
             }
         });
 
         window.addEventListener("resize", function() {
-            if (window.innerWidth > 768) {
-                siteNav.classList.remove("active");
-                menuToggle.setAttribute("aria-expanded", "false");
+            if (window.innerWidth > 860) closeMenu();
+        });
+
+        const revealObserver = new IntersectionObserver(function(entries, observer) {
+            entries.forEach(function(entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("active");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        document.querySelectorAll(".reveal").forEach(function(element) {
+            if (!element.classList.contains("active")) revealObserver.observe(element);
+        });
+
+        const sectionObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(function(entry) {
+                if (!entry.isIntersecting || !entry.target.id) return;
+
+                navLinks.forEach(function(link) {
+                    link.classList.toggle("active", link.getAttribute("href") === "#" + entry.target.id);
+                });
+            });
+        }, { rootMargin: "-35% 0px -55% 0px" });
+
+        document.querySelectorAll("main section[id]").forEach(function(section) {
+            sectionObserver.observe(section);
+        });
+
+        document.querySelectorAll(".faq-question").forEach(function(button) {
+            button.addEventListener("click", function() {
+                const item = this.closest(".faq-item");
+                const willOpen = !item.classList.contains("open");
+
+                document.querySelectorAll(".faq-item.open").forEach(function(openItem) {
+                    openItem.classList.remove("open");
+                    openItem.querySelector(".faq-question").setAttribute("aria-expanded", "false");
+                });
+
+                item.classList.toggle("open", willOpen);
+                this.setAttribute("aria-expanded", String(willOpen));
+            });
+        });
+
+        document.querySelectorAll(".project-inquiry").forEach(function(link) {
+            link.addEventListener("click", function() {
+                const service = document.getElementById("service");
+                const requestedService = this.dataset.service;
+
+                if (requestedService && Array.from(service.options).some(function(option) {
+                    return option.value === requestedService;
+                })) {
+                    service.value = requestedService;
+                }
+            });
+        });
+
+        function copyMessage(text) {
+            if (navigator.clipboard && window.isSecureContext) {
+                return navigator.clipboard.writeText(text);
+            }
+
+            return new Promise(function(resolve, reject) {
+                const textarea = document.createElement("textarea");
+                textarea.value = text;
+                textarea.setAttribute("readonly", "");
+                textarea.style.position = "fixed";
+                textarea.style.opacity = "0";
+                document.body.appendChild(textarea);
+                textarea.select();
+
+                try {
+                    const copied = document.execCommand("copy");
+                    document.body.removeChild(textarea);
+                    copied ? resolve() : reject(new Error("Nusxalash amalga oshmadi"));
+                } catch (error) {
+                    document.body.removeChild(textarea);
+                    reject(error);
+                }
+            });
+        }
+
+        document.getElementById("lead-form").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            const status = document.getElementById("form-status");
+            if (!this.checkValidity()) {
+                this.reportValidity();
+                status.textContent = "Majburiy maydonlarni to‘g‘ri to‘ldiring.";
+                return;
+            }
+
+            const data = new FormData(this);
+            const preparedMessage = [
+                "Assalomu alaykum! Pixel IT Group xizmatiga qiziqyapman.",
+                "",
+                "Ism: " + data.get("name"),
+                "Telefon: " + data.get("phone"),
+                "Xizmat: " + data.get("service"),
+                "Loyiha hajmi: " + data.get("budget"),
+                "Izoh: " + (data.get("message") || "Ko‘rsatilmagan")
+            ].join("\n");
+
+            const telegramWindow = window.open("https://t.me/Manager_sp01", "_blank", "noopener,noreferrer");
+
+            copyMessage(preparedMessage)
+                .then(function() {
+                    status.textContent = "Xabar nusxalandi. Telegram chatida uni joylashtirib yuboring.";
+                })
+                .catch(function() {
+                    status.textContent = "Telegram ochildi. Ma’lumotlarni chatga yuboring.";
+                });
+
+            if (!telegramWindow) {
+                status.innerHTML = "Telegram oynasi bloklandi. <a href=\"https://t.me/Manager_sp01\" target=\"_blank\" rel=\"noopener noreferrer\">Chatni shu yerdan oching</a>.";
             }
         });
-    }
-</script>
+
+        window.addEventListener("scroll", function() {
+            scrollTopButton.classList.toggle("visible", window.scrollY > 650);
+        }, { passive: true });
+
+        scrollTopButton.addEventListener("click", function() {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        document.getElementById("current-year").textContent = new Date().getFullYear();
+    </script>
 </body>
 </html>
